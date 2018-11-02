@@ -7,27 +7,32 @@
       <div class="col-md-2 todoItem">{{ToDoState.Title}}</div>
       <div class="col-md-2">IsCompleted:</div>
       <div class="col-md-2 todoItem">{{ToDoState.IsCompleted}}</div>
+      <div class="col-md-2">Id:</div>
+      <div class="col-md-2 todoItem">{{ToDoState.Id}}</div>
     </div>
+    <hr>
   </ng-container>
 </div>
 
 <hr/>
-
-<!-- <div class="container form-group" style="margin: 10px;">
+<form>
+<div class="container form-group" style="margin: 10px;">
   <h3>Create New Wishlist</h3>
   <div class="row">
     <div class="form-group col-md-4">
-      <input [(ngModel)]="Title" placeholder="Enter your Wish" class="form-control" style="min-width: 150px;">
+      <input [(ngModel)]="Title" name="todo-title" placeholder="Enter your Wish" class="form-control" style="min-width: 150px;">
     </div>
 
     <div class="col-md-2 form-check" style="margin-top: 10px; margin-left: 30px;">
-      <input type="checkbox" class="form-check-input" id="completed" [(ngModel)]="Completed">
+      <input type="checkbox" name="todo-if-completed" class="form-check-input" id="completed" [(ngModel)]="Completed">
       <label for="completed" class="form-check-label">Completed?</label>
     </div>
 
     <div class="col-md-2">
         <button type="submit" class="btn btn-primary" (click)="createToDo()" style="Width:70px;">Add</button>
-     </div>
+        <button type="submit" class="btn btn-accent" (click)="deleteLastToDo()" style="Width:100px;">Delete Last Entry</button>
+      </div>
 
   </div>
-</div> -->
+</div>
+</form>

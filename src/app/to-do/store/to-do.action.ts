@@ -11,13 +11,14 @@ export class GetToDo implements Action {
     constructor() {}
 }
 
-export class CreateToDo implements Action {
+export class CreateToDo implements ActionWithPayload<ToDo[]> {
     readonly type = CREATE_TODO;
-    payload: ToDo;
+    payload: ToDo[];
 
-    constructor(payload: ToDo) {
+    constructor(payload: ToDo[]) {
         this.payload = payload;
     }
+    
 }
 
 export type All = GetToDo | CreateToDo; 

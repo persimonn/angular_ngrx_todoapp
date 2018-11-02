@@ -6,8 +6,9 @@ import * as ToDoActions from './to-do.action';
 
 const initialState = initializeState();
 
-export function ToDoReducer(state: ToDoState = initialState, action: Action) {
-
+export function ToDoReducer(state: ToDoState = initialState, 
+    action: Action) {
+    
     switch (action.type) {
         case ToDoActions.GET_TODO:
             return { ...state, Loaded: false, Loading: true };
@@ -15,7 +16,9 @@ export function ToDoReducer(state: ToDoState = initialState, action: Action) {
         case ToDoActions.CREATE_TODO:
             return ({
                 ...state,
-                ToDoList: state.ToDoList.concat((action as ActionWithPayload<ToDo[]>).payload),
+                ToDoList: state.ToDoList.concat(
+                     (action as ActionWithPayload<ToDo[]>).payload
+                ),
                 Loaded: false, Loading: true
             });
 
