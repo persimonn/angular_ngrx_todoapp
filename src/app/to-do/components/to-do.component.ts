@@ -2,7 +2,7 @@ import { ToDoState } from './../store/to-do.state';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store, select, Action } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { CreateToDo, CREATE_TODO, GET_TODO } from '../store/to-do.action';
+import { CreateToDo, CREATE_TODO, GET_TODO, DELETE_LAST_TODO, DELETE_TODO_BY_ID } from '../store/to-do.action';
 import { ToDoReducer } from '../store/to-do.reducers';
 import { ToDo } from '../to-do.model';
 import { ActionWithPayload } from '../../ActionWithPayload';
@@ -32,6 +32,14 @@ export class ToDoComponent implements OnInit {
       type: GET_TODO      
     }
 
+    let deleteLastToDoAction: Action = {
+      type: DELETE_LAST_TODO      
+    }
+
+    let deleteToDoByIdAction: Action = {
+      type: DELETE_TODO_BY_ID      
+    }
+
     this.store.dispatch(createToDoAction);
     this.ToDoSubscription = this.ToDoState$.pipe(map(x => this.ToDoList = x.ToDoList)).subscribe();
     this.store.dispatch(getToDoAction);
@@ -54,9 +62,23 @@ export class ToDoComponent implements OnInit {
   }
 
   deleteLastToDo() {
-    this.store.select(state => state).subscribe((state) => {
-      state['todos']['ToDoList'].pop();
-    });
+    let todoAction: Action = {
+      type: DELETE_LAST_TODO
+    }
+    this.store.dispatch(todoAction);
+    // this.store.select(state => state).subscribe((state) => {
+    //   state['todos']['ToDoList'].pop();
+    // });
+  }
+
+  deleteToDoById() {
+    let todoAction: Action = {
+      type: DELETE_TODO_BY_ID
+    }
+    this.store.dispatch(todoAction);
+    // this.store.select(state => state).subscribe((state) => {
+    //   state['todos']['ToDoList'].pop();
+    // });
   }
   
   getEntryId() {
